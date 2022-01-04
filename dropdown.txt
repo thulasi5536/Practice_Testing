@@ -1,0 +1,126 @@
+import java.util.ArrayList;
+import java.util.List;
+
+import org.openqa.selenium.WebElement;
+
+public class dropDown {
+	List<String> elementsToBeVerified = new ArrayList<>();
+	
+	
+	public void test1() {
+		elementsToBeVerified.add("Approved");
+	    elementsToBeVerified.add("Rejected");
+	    elementsToBeVerified.add("Canceled");
+	    elementsToBeVerified.add("Canceled By System");
+	    elementsToBeVerified.add("Processing");
+	
+	    List<String> elementsToBeVerifiedbackup = elementsToBeVerified;
+        List<String> listOfStatusItems = getElementslist();
+        boolean elementExist = false;
+        for (String validateStatusElement : elementsToBeVerified) {
+            System.out.println(listOfStatusItems.size());
+            for (String elementsFromUI : listOfStatusItems) {
+                if (validateStatusElement.equals(elementsFromUI)) {
+                    assertTableResult();
+                    elementExist = true;
+                    break;
+                }
+            }
+            if (!elementExist) {
+                System.out.println(validateStatusElement + "  is not exist in the list ");
+            }
+            elementExist = false;
+            listOfStatusItems.remove(validateStatusElement);
+	}
+        
+        private List<String> getElementslist() {
+            List<WebElement> elementsOnTheList = driver.findElements(By.xpath("//*"));
+
+            List<String> elementsOnTheList = new ArrayList<>();
+            elementsOnTheList.add("Any Status");
+            elementsOnTheList.add("Pending Approval");
+            elementsOnTheList.add("Approval in Progress");
+            elementsOnTheList.add("Processing");
+            elementsOnTheList.add("Approved");
+            elementsOnTheList.add("Rejected");
+            elementsOnTheList.add("Processing");
+
+
+            return elementsOnTheList;
+        }
+	
+	
+	
+    
+
+}
+=================================================
+package com.practice.pojo;
+
+import org.testng.annotations.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class testing1 {
+
+    List<String> elementsToBeVerified = new ArrayList<>();
+
+    @Test
+    public void test1() {
+
+        String[] items = {"A", "BC","CD"};
+        
+        for (String item : items){
+            System.out.println(item);
+        }
+        
+        elementsToBeVerified.add("Approved");
+        elementsToBeVerified.add("Rejected");
+        elementsToBeVerified.add("Canceled");
+        elementsToBeVerified.add("Canceled By System");
+        elementsToBeVerified.add("Processing");
+
+        
+        List<String> elementsToBeVerifiedbackup = elementsToBeVerified;
+        List<String> listOfStatusItems = getElementslist();
+        boolean elementExist = false;
+        for (String validateStatusElement : elementsToBeVerified) {
+            System.out.println(listOfStatusItems.size());
+            for (String elementsFromUI : listOfStatusItems) {
+                if (validateStatusElement.equals(elementsFromUI)) {
+                    assertTableResult();
+                    elementExist = true;
+                    break;
+                }
+            }
+            if (!elementExist) {
+                System.out.println(validateStatusElement + "  is not exist in the list ");
+            }
+            elementExist = false;
+            listOfStatusItems.remove(validateStatusElement);
+        }
+
+    }
+
+    private void assertTableResult() {
+    }
+
+    private List<String> getElementslist() {
+        List<WebElement> elementsOnTheList = driver.findElements(By.xpath("//*"));
+
+        List<String> elementsOnTheList = new ArrayList<>();
+        elementsOnTheList.add("Any Status");
+        elementsOnTheList.add("Pending Approval");
+        elementsOnTheList.add("Approval in Progress");
+        elementsOnTheList.add("Processing");
+        elementsOnTheList.add("Approved");
+        elementsOnTheList.add("Rejected");
+        elementsOnTheList.add("Processing");
+
+
+        return elementsOnTheList;
+    }
+
+
+}
